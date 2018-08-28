@@ -1,0 +1,25 @@
+{
+  "name": "buddy-up",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/achoi2/Buddy-up.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/achoi2/Buddy-up/issues"
+  },
+  "homepage": "https://github.com/achoi2/Buddy-up#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "passport": "^0.4.0",
+    "passport-oauth2-meetup": "^1.1.0"
+  }
+}
