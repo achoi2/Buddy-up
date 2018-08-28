@@ -1,7 +1,8 @@
 const express = require('express');
-const app = express();
+const passportSetup = require('./config/passport-setup');
 const authRoutes = require('./routes/auth-routes');
 
+const app = express();
 // setup view engine
 app.set('view engine', 'ejs');
 
@@ -14,5 +15,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(3000, () =>
-    console.log('buddy-up running on port 3000!')
+    console.log('buddy-up is running on port 3000!')
 );

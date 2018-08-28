@@ -2,7 +2,7 @@
   "name": "buddy-up",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "scripts/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,6 +20,6 @@
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "passport": "^0.4.0",
-    "passport-oauth2-meetup": "^1.1.0"
+    "passport-meetup-oauth2": "0.0.2"
   }
 }
