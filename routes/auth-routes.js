@@ -19,6 +19,7 @@ router.get('/meetup', passport.authenticate('meetup'));
 router.get('/meetup/redirect', 
     passport.authenticate('meetup', { failureRedirect: '/login' }),
     function(req, res) {
+        console.log(req.query);
         // Successul authentication, redirect home.
         res.redirect('/');
     }
