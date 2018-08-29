@@ -10,8 +10,8 @@ passport.use(
         clientSecret: meetup.clientSecret
     }, (accessToken, refreshToken, profile, done) => {
         // passport callback function
-        meetupToken = accessToken;
-        console.log(accessToken, meetupToken);
+        meetupToken = accessToken
+        console.log(meetupToken, accessToken);
         return done(null, profile);
     })
 );
