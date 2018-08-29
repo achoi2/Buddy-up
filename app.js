@@ -1,7 +1,8 @@
+require('isomorphic-fetch');
 const express = require('express');
 const passport = require('passport');
-const passportSetup = require('./config/passport-setup');
 const authRoutes = require('./routes/auth-routes');
+const registerMeetupStrategy = require('./config/passport-setup');
 
 const app = express();
 
@@ -9,9 +10,9 @@ const app = express();
 app.set('view engine', 'ejs');
 
 // passport initialize + session
+registerMeetupStrategy();
 app.use(passport.initialize());
 app.use(passport.session());
-
 // passport serialize user
 passport.serializeUser(function(user, done) {
     done(null, user);
@@ -21,12 +22,26 @@ passport.deserializeUser(function(user, done) {
     done(null, user);
 });
 
-// setup routes
+// setup authentication routes
 app.use('/auth', authRoutes);
 
 // create home route
 app.get('/', (req, res) => {
     res.render('index')
+});
+
+// fetch user profile from Meetup API
+fetch(
+    'https://api.meetup.com/members/self', 
+    {headers: new Headers(
+        {"Authorization": "Bearer b81eb53e6febf5a1cdf3487314faffae"}
+    )}
+)
+.then(res => {
+    return res.json();
+})
+.then(data => {
+    console.log(JSON.stringify(data));
 });
 
 // app runs on port 3000

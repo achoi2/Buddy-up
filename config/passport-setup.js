@@ -1,17 +1,20 @@
 const passport = require('passport');
 const MeetupStrategy = require('passport-meetup-oauth2').Strategy;
-let {meetup, meetupToken} = require('./keys');
+const keys = require('./keys');
 
-passport.use(
-    new MeetupStrategy({
-        // options for the meetup strategy
-        callbackURL: 'http://localhost:3000/auth/meetup/redirect',
-        clientID: meetup.clientID,
-        clientSecret: meetup.clientSecret
-    }, (accessToken, refreshToken, profile, done) => {
-        // passport callback function
-        meetupToken = accessToken;
-        console.log(accessToken, meetupToken);
-        return done(null, profile);
-    })
-);
+var registerMeetupStrategy = () => {
+    passport.use(
+        new MeetupStrategy({
+            // options for the meetup strategy
+            callbackURL: 'http://localhost:3000/auth/meetup/redirect',
+            clientID: keys.meetup.clientID,
+            clientSecret: keys.meetup.clientSecret
+        }, (accessToken, refreshToken, profile, done) => {
+            // passport callback function
+            console.log(accessToken);
+            return done(null, profile);
+        })
+    );
+}
+
+module.exports = registerMeetupStrategy;
