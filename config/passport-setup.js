@@ -6,7 +6,7 @@ var registerMeetupStrategy = () => {
     passport.use(
         new MeetupStrategy({
             // options for the meetup strategy
-            callbackURL: 'http://localhost:3000/auth/meetup/redirect',
+            callbackURL: 'http://ec2-18-191-243-243.us-east-2.compute.amazonaws.com/auth/meetup/redirect',
             clientID: process.env.CLIENT_ID,
             clientSecret: process.env.CLIENT_SECRET
         }, (accessToken, refreshToken, profile, done) => {
