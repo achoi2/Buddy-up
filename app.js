@@ -4,6 +4,7 @@ const passport = require('passport');
 const authRoutes = require('./routes/auth-routes');
 const registerMeetupStrategy = require('./config/passport-setup');
 
+
 const app = express();
 
 // setup view engine
