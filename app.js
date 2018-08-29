@@ -1,8 +1,8 @@
+require('isomorphic-fetch');
 const express = require('express');
 const passport = require('passport');
-const passportSetup = require('./config/passport-setup');
 const authRoutes = require('./routes/auth-routes');
-const isoFetch = require('isomorphic-fetch');
+const registerMeetupStrategy = require('./config/passport-setup');
 
 const app = express();
 
@@ -10,6 +10,7 @@ const app = express();
 app.set('view engine', 'ejs');
 
 // passport initialize + session
+registerMeetupStrategy();
 app.use(passport.initialize());
 app.use(passport.session());
 // passport serialize user
