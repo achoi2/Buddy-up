@@ -15,7 +15,7 @@ router.get('/logout', (req, res) => {
 
 // auth with meetup account
 router.get('/meetup', passport.authenticate('meetup'));
-
+// handle failure / success after auth attempt
 router.get('/meetup/redirect', 
     passport.authenticate('meetup', { failureRedirect: '/login' }),
     function(req, res) {
