@@ -5,10 +5,10 @@ const passport = require('passport');
 router.get('/meetup', passport.authenticate('meetup'));
 // handle failure / success after auth attempt
 router.get('/meetup/redirect', 
-    passport.authenticate('meetup', { failureRedirect: '/login' }),
+    passport.authenticate('meetup', { failureRedirect: '/' }),
     function(req, res) {
         // Successul authentication, redirect home.
-        res.send('Login successful!')
+        res.redirect('/chat')
     }
 );
 // export router
