@@ -1,7 +1,9 @@
+// require .env config file (API keys)
 require('dotenv').config();
 const passport = require('passport');
+// initialize meetup strategy for passport
 const MeetupStrategy = require('passport-meetup-oauth2').Strategy;
-
+// configure strategy
 var registerMeetupStrategy = () => {
     passport.use(
         new MeetupStrategy({
@@ -16,5 +18,5 @@ var registerMeetupStrategy = () => {
         })
     );
 }
-
+// export strategy
 module.exports = registerMeetupStrategy;

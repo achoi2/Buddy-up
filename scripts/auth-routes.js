@@ -1,7 +1,7 @@
+// initialize an express router
 const router = require('express').Router();
 const passport = require('passport');
-
-// auth with meetup account
+// authenticate with meetup account
 router.get('/meetup', passport.authenticate('meetup'));
 // handle failure / success after auth attempt
 router.get('/meetup/redirect', 
@@ -11,5 +11,5 @@ router.get('/meetup/redirect',
         res.redirect('/');
     }
 );
-
+// export router
 module.exports = router;
