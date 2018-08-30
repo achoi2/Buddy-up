@@ -22,6 +22,7 @@
     "express": "^4.16.3",
     "isomorphic-fetch": "^2.2.1",
     "passport": "^0.4.0",
-    "passport-meetup-oauth2": "0.0.2"
+    "passport-meetup-oauth2": "0.0.2",
+    "pg-promise": "^8.4.6"
   }
 }
