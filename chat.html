@@ -22,10 +22,17 @@
 </head>
 <body>
     <!-- Chat Screen -->
-    <ul id="messages"></ul>
-    <form action="">
-        <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
+    <header>
+        <a href="/">
+            <h1>Exit Chat</h1>
+        </a>
+    </header>
+    <main>
+        <ul id="messages"></ul>
+        <form action="">
+            <input id="m" autocomplete="off" /><button>Send</button>
+        </form>
+    </main>
     <!-- Load Socket.io Client + Connect! -->
     <script src="/socket.io/socket.io.js"></script>
     <script>
