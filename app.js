@@ -35,20 +35,6 @@ app.get('/chat', (req, res) => {
     res.sendFile(__dirname + '/chat.html');
 });
 
-// fetch user profile from Meetup API
-fetch(
-    'https://api.meetup.com/members/self', 
-    {headers: new Headers(
-        {"Authorization": "Bearer b81eb53e6febf5a1cdf3487314faffae"}
-    )}
-)
-.then(res => {
-    return res.json();
-})
-.then(data => {
-    console.log(JSON.stringify(data));
-});
-
 // listen to incoming sockets, then
 // log connection status to console!
 io.on('connection',(socket) => {

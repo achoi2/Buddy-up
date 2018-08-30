@@ -3,18 +3,45 @@ require('dotenv').config();
 const passport = require('passport');
 // initialize meetup strategy for passport
 const MeetupStrategy = require('passport-meetup-oauth2').Strategy;
+const db = require('./database');
+let serverURL = 'http://ec2-18-191-243-243.us-east-2.compute.amazonaws.com/auth/meetup/redirect';
+
+let getMeetupProfile = (token) => {
+    let url = 'https://api.meetup.com/members/self'
+    return fetch(url,
+        {headers: new Headers(
+            {"Authorization": "Bearer " + token}
+        )}
+    )
+    .then(res => {
+        return res.json();
+    })
+};
+
+let storeMeetupProfile = (id, accessToken) => {
+    db.query(`UPDATE users SET access_token = $1
+    WHERE meetup_id = '$2';`, [accessToken, id]
+    )}
+
 // configure strategy
 var registerMeetupStrategy = () => {
     passport.use(
         new MeetupStrategy({
             // options for the meetup strategy
-            callbackURL: 'http://ec2-18-191-243-243.us-east-2.compute.amazonaws.com/auth/meetup/redirect',
+            callbackURL: serverURL,
             clientID: process.env.CLIENT_ID,
             clientSecret: process.env.CLIENT_SECRET
         }, (accessToken, refreshToken, profile, done) => {
             // passport callback function
-            console.log(accessToken);
-            return done(null, profile);
+            console.log(`Access Token: ${accessToken}`);
+            getMeetupProfile(accessToken)
+            .then(profile => {
+                console.log(profile);
+                return storeMeetupProfile(profile.id, accessToken)
+            })
+            .then(data => {
+                return done(null, profile);
+            });
         })
     );
 }
