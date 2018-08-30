@@ -13,16 +13,30 @@
         .meetup-btn {
             background-color: #f00;
             color: #fff;
-            padding: 6px 11px;
+            padding: 9px 36px;
+            border-radius: 50px;
+            text-decoration: none;;
+        } .meetup-btn:hover {
+            box-shadow: 3px 3px 5px #333;
+        }
+        body {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg');
+            background-position: 13% -4%;
+            background-repeat: no-repeat;
+            background-color: #F5F5F5;
         }
     </style>
 </head>
 <body>
     <!-- Login page -->
-    <header>
-        <h1>Welcome to BuddyUp!</h1>
-    </header>
     <main>
+        <h1>
+            Meetups rock.
+            <br>
+            Don't go alone.
+        </h1>
+        <h1>Find locals & <u>BuddyUp</u>.</h1>
+        <br>
         <a href="/auth/meetup" class="meetup-btn">Login with Meetup</a>
     </main>
     <!-- Scripts -->
