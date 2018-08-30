@@ -8,7 +8,7 @@ router.get('/meetup/redirect',
     passport.authenticate('meetup', { failureRedirect: '/login' }),
     function(req, res) {
         // Successul authentication, redirect home.
-        res.redirect('/');
+        res.send('Login successful!')
     }
 );
 // export router
