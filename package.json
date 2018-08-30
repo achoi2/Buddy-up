@@ -23,5 +23,6 @@
     "passport": "^0.4.0",
     "passport-meetup-oauth2": "0.0.2",
     "socket.io": "^2.1.1"
+    "pg-promise": "^8.4.6"
   }
 }
