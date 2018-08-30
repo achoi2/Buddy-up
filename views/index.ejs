@@ -5,17 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Buddy-Up</title>
-    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <style>
+        .meetup-btn {
+            background-color: #f00;
+            color: #fff;
+            padding: 6px 11px;
+        }
+    </style>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/auth/login">Login</a></li>
-            <li><a href="/auth/logout">Logout</a></li>
-        </ul>
-    </nav>
-    <h1>App Works!</h1>
+    <header>
+        <h1>Welcome to BuddyUp!</h1>
+    </header>
+    <main>
+        <a href="/auth/meetup" class="meetup-btn">Login with Meetup</a>
+    </main> 
     <script src="app.js"></script>
 </body>
 </html>
