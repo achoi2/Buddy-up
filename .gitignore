@@ -1,4 +1,4 @@
-// ignore these files :)
+# ignore these files when committing to git
 node_modules
 package-lock.json
 .DS_Store

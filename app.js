@@ -1,36 +1,34 @@
+// polyfill for using fetch on the backend
 require('isomorphic-fetch');
-const express = require('express');
+// initialize an express app
+const app = require('express')();
 const passport = require('passport');
-const authRoutes = require('./routes/auth-routes');
-const registerMeetupStrategy = require('./config/passport-setup');
+const authRoutes = require('./scripts/auth-routes');
+const registerMeetupStrategy = require('./scripts/passport-setup');
+// initialize http server for express app
+const http = require('http').Server(app);
 
-const app = express();
-
-// setup view engine
-app.set('view engine', 'ejs');
-
-// passport initialize + session
+// initiliaze passport session
 registerMeetupStrategy();
 app.use(passport.initialize());
 app.use(passport.session());
-// passport serialize user
+// serialize user
 passport.serializeUser(function(user, done) {
     done(null, user);
 });
-// passport deserialize user
+// deserialize user
 passport.deserializeUser(function(user, done) {
     done(null, user);
 });
 
-// setup authentication routes
+// auth routes
 app.use('/auth', authRoutes);
-
-// create home route
+// home route
 app.get('/', (req, res) => {
-    res.render('index')
+    res.sendFile(__dirname + '/index.html');
 });
 
 // app runs on port 3000
-app.listen(3000, () =>
+http.listen(3000, () =>
     console.log('buddy-up is running on port 3000!')
 );
