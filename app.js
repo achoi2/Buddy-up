@@ -39,6 +39,9 @@ app.get('/chat', (req, res) => {
 // log connection status to console!
 io.on('connection',(socket) => {
     console.log('a user connected');
+    socket.on('chat message', function(msg){
+        console.log('message: ' + msg);
+    });
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });
