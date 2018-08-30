@@ -1,8 +1,8 @@
 require('isomorphic-fetch');
 const express = require('express');
 const passport = require('passport');
-const authRoutes = require('./routes/auth-routes');
-const registerMeetupStrategy = require('./config/passport-setup');
+const authRoutes = require('./scripts/auth-routes');
+const registerMeetupStrategy = require('./scripts/passport-setup');
 
 const app = express();
 
