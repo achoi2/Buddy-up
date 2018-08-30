@@ -18,10 +18,10 @@
   "homepage": "https://github.com/achoi2/Buddy-up#readme",
   "dependencies": {
     "dotenv": "^6.0.0",
-    "ejs": "^2.6.1",
     "express": "^4.16.3",
     "isomorphic-fetch": "^2.2.1",
     "passport": "^0.4.0",
-    "passport-meetup-oauth2": "0.0.2"
+    "passport-meetup-oauth2": "0.0.2",
+    "socket.io": "^2.1.1"
   }
 }
