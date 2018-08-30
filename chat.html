@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Metadata -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Title + Favicon -->
+    <title>Chat+BuddyUp</title>
+    <!-- Styles -->
+    <link rel="stylesheet" href="./styles/styles.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font: 20px, Helvetica, Arial; }
+        form { position: fixed; bottom: 0; width: 100%; }
+        form input { border: 0; padding: 20px; width: 80%; }
+        form button { width: 20%; background: #0f0 ; border: none; padding: 20px; }
+        #messages { list-style-type: none; margin: 0; padding: 0; }
+        #messages li { padding: 5px 10px; }
+        #messages li:nth-child(odd) { background: #eee; }
+    </style>
+</head>
+<body>
+    <!-- Chat Screen -->
+    <ul id="messages"></ul>
+    <form action="">
+        <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    <!-- Load Socket.io Client + Connect! -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+    </script>
+</body>
+</html>

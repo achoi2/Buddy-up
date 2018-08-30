@@ -1,12 +1,14 @@
 // polyfill for using fetch on the backend
 require('isomorphic-fetch');
-// initialize an express app
+// initialize express app
 const app = require('express')();
+// initialize http server for express app
+const http = require('http').Server(app);
 const passport = require('passport');
 const authRoutes = require('./scripts/auth-routes');
 const registerMeetupStrategy = require('./scripts/passport-setup');
-// initialize http server for express app
-const http = require('http').Server(app);
+// initialize scoket.io instance
+const io = require('socket.io')(http);
 
 // initiliaze passport session
 registerMeetupStrategy();
@@ -21,14 +23,42 @@ passport.deserializeUser(function(user, done) {
     done(null, user);
 });
 
-// auth routes
-app.use('/auth', authRoutes);
-// home route
+// ::routes::
+// home
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
+// auth
+app.use('/auth', authRoutes);
+// chat
+app.get('/chat', (req, res) => {
+    res.sendFile(__dirname + '/chat.html');
+});
 
-// app runs on port 3000
+// fetch user profile from Meetup API
+fetch(
+    'https://api.meetup.com/members/self', 
+    {headers: new Headers(
+        {"Authorization": "Bearer b81eb53e6febf5a1cdf3487314faffae"}
+    )}
+)
+.then(res => {
+    return res.json();
+})
+.then(data => {
+    console.log(JSON.stringify(data));
+});
+
+// listen to incoming sockets, then
+// log connection status to console!
+io.on('connection',(socket) => {
+    console.log('a user connected');
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
+});
+
+// app served on port 3000
 http.listen(3000, () =>
     console.log('buddy-up is running on port 3000!')
 );
