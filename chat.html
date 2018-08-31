@@ -13,38 +13,84 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font: 20px, Helvetica, Arial; }
         form { position: fixed; bottom: 0; width: 100%; }
-        form input { border: 0; padding: 20px; width: 80%; }
+        form input { border: 0; padding: 20px; width: 80%; background: #d5d5d5; }
         form button { width: 20%; background: #0f0 ; border: none; padding: 20px; }
-        #messages { list-style-type: none; margin: 0; padding: 0; }
+        #messages { list-style-type: none; margin: 70px 0 0 0; padding: 0; }
         #messages li { padding: 5px 10px; }
         #messages li:nth-child(odd) { background: #eee; }
+        .nav {
+            width: 100%;
+            background: #f00;
+            color: #fff;
+            position: fixed;
+            top: 0; 
+            width: 100%;
+        }
+        .nav-item {
+            display: inline-block;
+            margin: 7px 10px;
+        }
+        a:link {
+            color: #fff;
+            text-decoration: none;
+        } a:visited {
+            color: #fff;
+        }
+        .info {
+            width: 100%;
+            color: #c5c5c5;
+            background: #fff;
+            padding: 7px 10px;
+        }
     </style>
 </head>
 <body>
     <!-- Chat Screen -->
     <header>
-        <a href="/">
-            <h1>Exit Chat</h1>
-        </a>
+        <nav class="nav">
+            <ul>
+                <li class="nav-item">
+                    <a href="/" class="calendar-btn">
+                        <span>(25)</span>
+                        Upcoming Meetups
+                    </a>
+                </li>
+                <span>|</span>
+                <li class="nav-item">
+                    <a href="/">
+                        <span>(5)</span>
+                        Buddies
+                    </a>
+                </li>
+            </ul>
+            <div class="info">
+                <p>
+                    Chat with buddy <b><a href="/" style="color: #a5a5a5;">Andrew Choi</a></b
+                </p>
+            </div>
+        </nav>
     </header>
     <main>
         <ul id="messages"></ul>
         <form action="">
-            <input id="m" autocomplete="off" /><button>Send</button>
+            <input id="m" autocomplete="off" placeholder="Type here..." required/><button>Send</button>
         </form>
     </main>
     <!-- Load Socket.io Client + Connect! -->
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
-    $(function () {
-        var socket = io();
-        $('form').submit(function(){
+    $(() => {
+    var socket = io();
+    $('form').submit(() => {
         socket.emit('chat message', $('#m').val());
         $('#m').val('');
         return false;
-        });
     });
+    socket.on('chat message', (msg) => {
+        $('#messages').append($('<li>').text(msg));
+    });
+});
     </script>
 </body>
 </html>
