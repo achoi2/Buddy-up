@@ -4,7 +4,7 @@ const passport = require('passport');
 // initialize meetup strategy for passport
 const MeetupStrategy = require('passport-meetup-oauth2').Strategy;
 const db = require('./database');
-let callbackURL = 'http://ec2-18-191-243-243.us-east-2.compute.amazonaws.com/chat';
+let callbackURL = 'http://ec2-18-191-243-243.us-east-2.compute.amazonaws.com/auth/meetup/redirect';
 
 let getMeetupProfile = (accessToken) => {
     let url = 'https://api.meetup.com/members/self'
