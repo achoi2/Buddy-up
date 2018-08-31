@@ -13,17 +13,44 @@
         .meetup-btn {
             background-color: #f00;
             color: #fff;
-            padding: 6px 11px;
+            padding: 9px 36px;
+            border-radius: 50px;
+            box-shadow: 1px 1px 2px #999;
+            text-decoration: none;;
+        } .meetup-btn:hover {
+            box-shadow: 3px 3px 5px #333;
+        }
+        .sign-up-link {
+            color: #252525;
+            font-weight: 600;
+            text-shadow: 1px 1px 1px #bbb;
+        } .sign-up-link:hover {
+            color: #00f;
+        }
+        body {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg');
+            background-position: 13% -4%;
+            background-repeat: no-repeat;
+            background-color: #F5F5F5;
+        }
+        main {
+            padding: 0 0.75em;
         }
     </style>
 </head>
 <body>
     <!-- Login page -->
-    <header>
-        <h1>Welcome to BuddyUp!</h1>
-    </header>
     <main>
+        <h1>
+            Meetups rock.
+            <br>
+            Don't go alone.
+        </h1>
+        <h1>Find locals & <u>BuddyUp</u></h1>
+        <br>
         <a href="/auth/meetup" class="meetup-btn">Login with Meetup</a>
+        <br><br><br>
+        <a href="https://secure.meetup.com/register" target="_blank" class="sign-up-link"> I don't have a Meetup account!</a>
     </main>
     <!-- Scripts -->
     <script src="app.js"></script>
