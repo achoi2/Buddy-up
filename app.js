@@ -35,13 +35,13 @@ app.get('/chat', (req, res) => {
     res.sendFile(__dirname + '/chat.html');
 });
 
-// listen to incoming sockets, then
-// log connection status to console!
+// listen for incoming web sockets
 io.on('connection',(socket) => {
+    // log connected status to console
     console.log('a user connected');
     // log client messages to console
-    socket.on('chat message', function(msg){
-        console.log('message: ' + msg);
+    socket.on('chat message', (msg) => {
+        io.emit('chat message', msg);
     });
     // log disconnect status to console
     socket.on('disconnect', () => {
