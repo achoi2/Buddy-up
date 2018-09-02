@@ -44,10 +44,18 @@
         }
         .events-bar {
             background-color: gray;
-            height: 100%;
             display: none;
             position: absolute;
+            display: flex;
+            word-wrap: wrap;
         }
+
+        .events-container {
+            padding-left: 7px;
+            height: 100%;
+            width: 100%;
+        }
+
         .unorderedList {
             color: beige;
             padding-top: 10px;
@@ -151,7 +159,7 @@
         }
     };
 
-    fetch('https://api.meetup.com/self/calendar?&sign=true&photo-host=public&fields=featured_photo&page=6',
+    fetch('https://api.meetup.com/self/calendar?&sign=true&photo-host=public&fields=featured_photo&page=20',
         {headers: new Headers({Authorization: 'Bearer b81eb53e6febf5a1cdf3487314faffae'})}
     ).then(res => {
             return res.json();
