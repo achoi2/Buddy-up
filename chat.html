@@ -42,17 +42,55 @@
             background: #fff;
             padding: 7px 10px;
         }
+        .events-bar {
+            background-color: gray;
+            display: none;
+            position: absolute;
+            display: flex;
+            word-wrap: wrap;
+        }
+
+        .events-container {
+            padding-left: 7px;
+            height: 100%;
+            width: 100%;
+        }
+
+        .unorderedList {
+            color: beige;
+            padding-top: 10px;
+        }
+
+        .show {
+           display: block;
+        }
+
+        .calendar-btn {
+            border: none;
+            background: none;
+            padding: none;
+            color: white;
+            cursor: pointer;
+        }
+
     </style>
 </head>
 <body>
     <!-- Chat Screen -->
+    <div class="events-bar">
+        <div class="events-container">
+            <h3>Your Upcoming Events</h3>
+            <div class="events-list"></div>
+        </div>
+    </div>
     <header>
         <nav class="nav">
             <ul>
                 <li class="nav-item">
-                    <a href="/" class="calendar-btn">
+                    <button class="calendar-btn">
                         <span>(25)</span>
                         Upcoming Meetups
+                    </button>
                     </a>
                 </li>
                 <span>|</span>
@@ -65,7 +103,7 @@
             </ul>
             <div class="info">
                 <p>
-                    Chat with buddy <b><a href="/" style="color: #a5a5a5;">Andrew Choi</a></b
+                    Chat with buddy <b><a href="/" style="color: #a5a5a5;">Andrew Choi</a></b>
                 </p>
             </div>
         </nav>
@@ -91,6 +129,52 @@
         $('#messages').append($('<li>').text(msg));
     });
 });
+    let navigation = document.querySelector('.nav')
+    let calendarBtn = document.querySelector(".calendar-btn");
+    let eventsBar = document.querySelector('.events-bar');
+
+    let createEventsList = events => {
+        for (let event of events) {
+            event = {
+                name: event.group.name,
+                date: event.local_date,
+                time: event.local_time,
+            };
+            let listOfEvents = document.querySelector('.events-list');
+            let unorderedList = document.createElement('ul')
+            let nameContainer = document.createElement('li');
+            let dateContainer = document.createElement('li');
+            let timeContainer = document.createElement('li');
+
+            nameContainer.textContent = event.name
+            dateContainer.textContent = event.date
+            timeContainer.textContent = event.time
+
+            unorderedList.appendChild(nameContainer);
+            unorderedList.appendChild(dateContainer);
+            unorderedList.appendChild(timeContainer);
+            listOfEvents.appendChild(unorderedList);
+
+            unorderedList.classList.add('unorderedList');
+        }
+    };
+
+    fetch('https://api.meetup.com/self/calendar?&sign=true&photo-host=public&fields=featured_photo&page=20',
+        {headers: new Headers({Authorization: 'Bearer b81eb53e6febf5a1cdf3487314faffae'})}
+    ).then(res => {
+            return res.json();
+    }).then(data => {
+        createEventsList(data);
+    });
+
+    document.addEventListener('click', (e) => {
+        if (e.target === calendarBtn) {
+            eventsBar.classList.toggle('show')
+        } else {
+            eventsBar.classList.remove('show')
+        } 
+    });
+    
     </script>
 </body>
 </html>
