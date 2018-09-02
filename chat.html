@@ -43,22 +43,34 @@
             padding: 7px 10px;
         }
         .events-bar {
-            background-color: gray;
-            display: none;
+            background-color: gray; 
             position: absolute;
             display: flex;
             word-wrap: wrap;
+            display: none;
         }
 
         .events-container {
             padding-left: 7px;
             height: 100%;
             width: 100%;
+            
         }
 
         .unorderedList {
             color: beige;
             padding-top: 10px;
+        }
+
+        .event-title {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .exit {
+            cursor: pointer;
+            padding-right: 10px;
+            color: #191919;
         }
 
         .show {
@@ -79,7 +91,9 @@
     <!-- Chat Screen -->
     <div class="events-bar">
         <div class="events-container">
-            <h3>Your Upcoming Events</h3>
+            <h3 class="event-title">Your Upcoming Events
+                <span class="exit">x</span>
+            </h3>
             <div class="events-list"></div>
         </div>
     </div>
@@ -132,6 +146,7 @@
     let navigation = document.querySelector('.nav')
     let calendarBtn = document.querySelector(".calendar-btn");
     let eventsBar = document.querySelector('.events-bar');
+    let exit = document.querySelector('.exit')
 
     let createEventsList = events => {
         for (let event of events) {
@@ -170,9 +185,11 @@
     document.addEventListener('click', (e) => {
         if (e.target === calendarBtn) {
             eventsBar.classList.toggle('show')
+        } else if (e.target === exit) {
+            eventsBar.classList.remove('show')
         } else {
             eventsBar.classList.remove('show')
-        } 
+        }
     });
     
     </script>
