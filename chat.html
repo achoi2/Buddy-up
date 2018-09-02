@@ -151,7 +151,7 @@
         }
     };
 
-    fetch('https://api.meetup.com/self/calendar?&sign=true&photo-host=public&fields=featured_photo&page=20',
+    fetch('https://api.meetup.com/self/calendar?&sign=true&photo-host=public&fields=featured_photo&page=6',
         {headers: new Headers({Authorization: 'Bearer b81eb53e6febf5a1cdf3487314faffae'})}
     ).then(res => {
             return res.json();
