@@ -39,6 +39,6 @@ In the initiated buddy chat session, chats are conducted in real-time thanks to 
 
 ### Upcoming Events 
 
-![](events/chat.png)
+![](media/events.png)
 
 Within the chat session, users are able to click and view a list of their upcoming events.
