@@ -17,6 +17,6 @@ Users can login into our application using their meetup accounts. If they don't 
 Once users are logged in, they will see a chat page. The chats are real time using websockets. Once users write their message and press send, they can see everyone elses chats.
 
 
-![](events/chat.png)
+![](media/events.png)
 
 If users press the upcoming meetups button, user's can see a list of their upcoming events. The upcomin events are from their meetup profiles. 
