@@ -1,15 +1,12 @@
 # Buddy Up
------------
 Buddy-up is a web application that focuses on building and creating friendships! Utilizing the Meetup API, we match users based on shared membership within at least one Meetup group. This allows our users to find a buddy based on similar interests and interact with each other by connecting them to a chat session,where they are able to get to know each other in real-time.
 
 ## Contributors
----------------
 * Andrew Choi
 * Liz Khuu
 * Xavier Duncan
 
 ## Technologies
----------------
 * Meetup API
 * Passport.js
 * Express.js
@@ -17,7 +14,6 @@ Buddy-up is a web application that focuses on building and creating friendships!
 * AWS
 
 ## About 
----------
 
 ### Login
 
