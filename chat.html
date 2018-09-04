@@ -44,16 +44,22 @@
         }
         .events-bar {
             background-color: gray;
-            display: none;
-            position: absolute;
             display: flex;
             word-wrap: wrap;
+            position: absolute;
+            display: none;
         }
 
         .events-container {
             padding-left: 7px;
             height: 100%;
             width: 100%;
+        }
+
+        .events-title {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
         }
 
         .unorderedList {
@@ -65,12 +71,27 @@
            display: block;
         }
 
-        .calendar-btn {
+        .events-btn {
             border: none;
             background: none;
             padding: none;
             color: white;
             cursor: pointer;
+            font-size: 17px;
+        }
+
+        .buddies-list {
+            border: none;
+            background: none;
+            padding: none;
+            color: white;
+            cursor: pointer;
+            font-size: 17px;       
+        }
+
+        .exit-bar {
+            cursor: pointer;
+            padding-right: 6px;
         }
 
     </style>
@@ -79,7 +100,10 @@
     <!-- Chat Screen -->
     <div class="events-bar">
         <div class="events-container">
-            <h3>Your Upcoming Events</h3>
+            <div class="events-title">
+                <h3>Your Upcoming Events</h3>
+                <h4 class="exit-bar">x</h4>
+            </div>   
             <div class="events-list"></div>
         </div>
     </div>
@@ -87,7 +111,7 @@
         <nav class="nav">
             <ul>
                 <li class="nav-item">
-                    <button class="calendar-btn">
+                    <button class="events-btn">
                         <span>(25)</span>
                         Upcoming Meetups
                     </button>
@@ -95,10 +119,10 @@
                 </li>
                 <span>|</span>
                 <li class="nav-item">
-                    <a href="/">
+                    <button class="buddies-list">
                         <span>(5)</span>
                         Buddies
-                    </a>
+                    </button>
                 </li>
             </ul>
             <div class="info">
@@ -130,8 +154,9 @@
     });
 });
     let navigation = document.querySelector('.nav')
-    let calendarBtn = document.querySelector(".calendar-btn");
+    let eventsBtn = document.querySelector(".events-btn");
     let eventsBar = document.querySelector('.events-bar');
+    let exitBar = document.querySelector('.exit-bar')
 
     let createEventsList = events => {
         for (let event of events) {
@@ -167,14 +192,15 @@
         createEventsList(data);
     });
 
-    document.addEventListener('click', (e) => {
-        if (e.target === calendarBtn) {
-            eventsBar.classList.toggle('show')
-        } else {
-            eventsBar.classList.remove('show')
-        } 
-    });
-    
+   eventsBtn.addEventListener('click', () => {
+       eventsBar.classList.toggle('show')
+   });
+
+   exitBar.addEventListener('click', () => {
+       eventsBar.classList.remove('show')
+   });
+
+
     </script>
 </body>
 </html>
